@@ -9,8 +9,11 @@ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkin
 sudo apt update -y
 sudo apt install -y jenkins
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-source ~/.bashrc
-nvm install  v22.14.0
-npm install -g npm@latest
-npm install -g pm2
+sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+sudo source ~/.bashrc
+sudo nvm install v22.14.0
+sudo npm install -g npm@latest
+sudo npm install -g pm2
+
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
