@@ -1,7 +1,10 @@
-sudo apt update 
+#!/bin/bash
+
+# Update system
+sudo apt update
 sudo apt upgrade -y
 
-#Jenkins installation
+# Jenkins Installation
 sudo apt install -y openjdk-17-jdk
 sudo apt install -y wget gnupg
 wget -O - https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
@@ -12,14 +15,14 @@ sudo apt install -y jenkins
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
 
-# Install nvm (Without sudo)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+# Install Node.js & npm (System-Wide)
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
 
-# Load nvm properly
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
+# Install PM2 globally
+sudo npm install -g pm2
 
-# Install Node.js & npm without sudo
-nvm install v22.14.0
-npm install -g npm@latest
-npm install -g pm2
+# Verify installation
+node -v
+npm -v
+pm2 -v
